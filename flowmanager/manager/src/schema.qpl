@@ -1,0 +1,104 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type PhoneType {
+  phone: String!
+}
+
+type VerifycationType {
+  code_input: Float!
+}
+
+type CodeType {
+  verify_code: Float!
+}
+
+type ThemeType {
+  theme: String!
+}
+
+type ProfileType {
+  firstName: String
+  lastName: String
+  phone: String!
+  dateOfBirth: DateTime
+  gender: String
+  theme: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type NameType {
+  firstName: String!
+  lastName: String!
+}
+
+type DateType {
+  dateOfBirth: DateTime!
+}
+
+type GenderType {
+  gender: String!
+}
+
+type Profile {
+  _id: String!
+  firstName: String
+  lastName: String
+  dateOfBirth: DateTime
+  phone: String
+  gender: String
+  verify_code: Float
+  code_input: Float
+  verification: Boolean
+  theme: String
+}
+
+type NullType {
+  nullKeys: [String!]!
+  profile: Profile!
+}
+
+type Query {
+  code(_id: String!): [CodeType!]!
+  profile(_id: String!): [ProfileType!]!
+  complete(_id: String!): NullType!
+}
+
+type Mutation {
+  create(input: PhoneInput!): [PhoneType!]!
+  verification(_id: String!, code: CodeInput!): [VerifycationType!]!
+  addName(_id: String!, input: NameInput!): [NameType!]!
+  addDate(_id: String!, input: DateInput!): [DateType!]!
+  addGender(_id: String!, input: GenderInput!): [GenderType!]!
+  theme(_id: String!, theme: ThemeInput!): [ThemeType!]!
+}
+
+input PhoneInput {
+  phone: String!
+}
+
+input CodeInput {
+  code_input: Float!
+}
+
+input NameInput {
+  firstName: String!
+  lastName: String!
+}
+
+input DateInput {
+  dateOfBirth: DateTime!
+}
+
+input GenderInput {
+  gender: String!
+}
+
+input ThemeInput {
+  theme: String!
+}

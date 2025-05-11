@@ -1,0 +1,26 @@
+include:
+  - template: Jobs/SAST.gitlab-ci.yml
+  - template: Jobs/Secret-Detection.gitlab-ci.yml
+  - template: Jobs/SAST-IaC.gitlab-ci.yml
+
+variables:
+  SAST_EXCLUDED_ANALYZERS: "brakeman,flawfinder,kubesec,mobsf,phpcs-security-audit,pmd-apex,sobelow,spotbugs"
+
+stages:
+  - test
+
+lint:
+  stage: test
+  image: node:20-alpine
+  before_script:
+    - npm install
+  script:
+    - npm run lint:check
+
+build:
+  stage: test
+  image: node:20-alpine
+  before_script:
+    - npm install
+  script:
+    - npm run build

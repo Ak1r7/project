@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+  mongodb:
+    image: mongo:latest
+    environment:
+      - MONGODB_DATABASE='${DATABASE_NAME}'
+      - MONGODB_USERNAME='${DATABASE_USER}'
+      - MONGODB_PASSWORD='${DATABSE_PASS}'
+    ports:
+      - ${PORT}:${PORT}
